@@ -1,0 +1,24 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+body {
+  line-height: 2em;
+}
+
+#main_content_wrap {
+  padding-bottom: 10em;
+}
+
+.inner {
+    max-width: 840px;
+}
+
+h1, h2, h3, h4, h5 {
+  padding-top: 1.5em;
+}
+
+code {
+  line-height: 1.8em;
+}
