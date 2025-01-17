@@ -225,6 +225,16 @@ abstract class AbstractCalendarDataProvider implements CalendarDataProviderInter
         }
         return $out;
     }
+
+    public function novaResourcesToArray() : array
+    {
+        $out = [];
+        foreach($this->novaResources() as $resourceClass => $resource) 
+        {
+            $out[$resourceClass::uriKey()] = $resourceClass::singularLabel();
+        }
+        return $out;
+    }
     
     protected function filterWithKey(string $filterKey) : ?EventFilter
     {

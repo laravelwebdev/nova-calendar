@@ -33,7 +33,16 @@
       </div>
 
       <div class="center-items">
- <Dropdown
+ 
+        <h1 class="text-90 font-normal text-xl md:text-2xl noselect">
+          <span>{{ $data.title }}</span>
+        </h1>
+
+      
+      </div>
+      
+      <div class="right-items">
+      <Dropdown
           :handle-internal-clicks="true"
           class="flex h-9 hover:bg-gray-100 dark:hover:bg-gray-700 rounded"
           dusk="month-picker"
@@ -73,13 +82,39 @@
             </DropdownMenu>
           </template>
         </Dropdown>
-        <h1 class="text-90 font-normal text-xl md:text-2xl noselect">
-          <span>{{ $data.title }}</span>
-        </h1>
-      
-      </div>
-      
-      <div class="right-items">
+       <Dropdown
+          :handle-internal-clicks="true"
+          class="flex h-9 hover:bg-gray-100 dark:hover:bg-gray-700 rounded"
+          dusk="create-event"
+        >
+          <DropdownTrigger style="cursor:pointer;">
+          <Icon  name="plus" />
+          </DropdownTrigger>
+          <template #menu>
+            <DropdownMenu width="260">
+
+              <ScrollWrap :height="350" class="bg-white dark:bg-gray-900">
+                <div
+                  ref="theForm"
+                  class="divide-y divide-gray-200 dark:divide-gray-800 divide-solid"
+                >
+                   <div>
+                    <template v-for="(resourcesLabel, resourcesKey) in $data.availableResources">
+                    <a :href="'resources/' + resourcesKey + '/new'">
+                      <button
+                        class="py-2 w-full block dark:bg-gray-800 dark:hover:bg-gray-700 hover:bg-gray-200"
+                        v-html="resourcesLabel"
+                      >
+                      </button>
+                      </a>
+                    </template>
+                  </div>
+
+                </div>
+              </ScrollWrap>
+            </DropdownMenu>
+          </template>
+        </Dropdown>
         <Dropdown
           v-if="Object.keys(availableFilters).length"
           :handle-internal-clicks="true"
@@ -95,17 +130,9 @@
           <DropdownTrigger
             style="cursor:pointer;"
           >
-            <Icon name="filter" />
-            <span
-              v-if="activeFilterKey != null"
-              :class="{
-                'dark:text-gray-300': activeFilterKey != null,
-              }"
-              class="ml-2 font-bold"
-              v-html="activeFilterLabel"
-            >
-            </span>
+            <Icon name="filter" :type="activeFilterKey != null ? 'solid' : 'outline'" />
           </DropdownTrigger>
+
 
           <template #menu>
             <DropdownMenu width="260">
@@ -141,7 +168,15 @@
             </DropdownMenu>
           </template>
         </Dropdown>
-  
+           <span
+              v-if="activeFilterKey != null"
+              :class="{
+                'dark:text-gray-300': activeFilterKey != null,
+              }"
+              class="ml-2 font-bold"
+              v-html="activeFilterLabel"
+            >
+            </span>
 
       </div>
       
@@ -301,6 +336,7 @@ export default {
             vue.windowTitle = response.data.windowTitle;
             vue.resetFiltersLabel = response.data.resetFiltersLabel;
             vue.availableFilters = response.data.filters;
+            vue.availableResources = response.data.resources;
             vue.activeFilterKey = response.data.activeFilterKey;
             vue.title = response.data.title;
             vue.columns = response.data.columns;
@@ -396,6 +432,7 @@ export default {
           loading: true,
           resetFiltersLabel: 'All events',
           availableFilters: {},
+          availableResources: {},
           activeFilterKey: null,
           activeFilterLabel: null,
           year: null,
