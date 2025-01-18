@@ -41,8 +41,8 @@ class MultiDay extends NovaEventGenerator
         $dateAttributeStart = $toEventSpec[0];
         $dateAttributeEnd = $toEventSpec[1];
         
-        $afterFilter = (new OnDate('', $toEventSpec))->afterOrOn();
-        $beforeFilter = (new OnDate('', $toEventSpec))->beforeOrOn();
+        $afterFilter = (new OnDate('', $dateAttributeEnd))->afterOrOn();
+        $beforeFilter = (new OnDate('', $dateAttributeStart))->beforeOrOn();
 
         // Since multi-day events are to be included, we have to query for
         // all models..
