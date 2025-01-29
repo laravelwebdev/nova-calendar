@@ -26,7 +26,7 @@ interface CalendarDataProviderInterface
     public function windowTitle() : string;
     
     // Will be displayed above the calendar
-    public function titleForView(string $viewSpecifier) : string;
+    public function titleForView(string $viewSpecifier) : array;
     
     // A 1D array with the names of the seven days of the week, in order of display L -> R
     public function daysOfTheWeek() : array;

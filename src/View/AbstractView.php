@@ -65,7 +65,8 @@ abstract class AbstractView implements ViewInterface
 
         return array_merge([
             'windowTitle' => $dataProvider->windowTitle(),
-            'title' => $dataProvider->titleForView($this->specifier()),
+            'title' => $dataProvider->titleForView($this->specifier())['large'],
+            'titleResponsive' => $dataProvider->titleForView($this->specifier())['responsive'],
             'styles' => array_replace_recursive($this->defaultStyles(), $dataProvider->eventStyles()),
             'filters' => $dataProvider->filtersToArray(),
             'resources' => $dataProvider->novaResourcesToArray(),

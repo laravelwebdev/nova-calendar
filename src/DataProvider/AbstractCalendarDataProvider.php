@@ -87,14 +87,16 @@ abstract class AbstractCalendarDataProvider implements CalendarDataProviderInter
         return config('app.timezone') ?? 'UTC';
     }
     
-    public function titleForView(string $viewSpecifier) : string
+    public function titleForView(string $viewSpecifier) : array
     {
-        if($viewSpecifier == View::MONTH)
-        {
-            return ucfirst($this->startOfRange()->translatedFormat('F Y'));
+        if ($viewSpecifier == View::MONTH) {
+            return [
+                'responsive' => $this->startOfRange()->translatedFormat('m-y'),
+                'large' => ucfirst($this->startOfRange()->translatedFormat('F Y'))
+            ];
         }
-        
-        return __('Calendar');
+    
+        return ['responsive' => __('Calendar'), 'large' => __('Calendar')];
     }
     
     public function firstDayOfWeek() : int

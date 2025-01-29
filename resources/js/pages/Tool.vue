@@ -19,9 +19,12 @@ aimed at developers). */
       </div>
 
       <div class="center-items">
-        <h1 class="text-90 font-normal text-xl md:text-2xl noselect">
+        <h1 class="text-90 font-normal text-xl md:text-2xl noselect hidden lg:block">
           <span>{{ $data.title }}</span>
         </h1>
+        <h1 class="lg:hidden ml-1 text-90 font-normal text-xl md:text-2xl noselect">
+          <span>{{ $data.titleResponsive }}</span>
+        </h1>          
       </div>
 
       <div class="right-items">
@@ -128,7 +131,7 @@ aimed at developers). */
           dusk="filter-selector"
         >
           <DropdownTrigger style="cursor: pointer">
-            <Button variant="action" icon="filter"> </Button>
+            <Button icon="filter" :variant="activeFilterKey != null ? 'solid' : 'action'"> </Button>
           </DropdownTrigger>
 
           <template #menu>
@@ -163,15 +166,6 @@ aimed at developers). */
             </DropdownMenu>
           </template>
         </Dropdown>
-        <span
-          v-if="activeFilterKey != null"
-          :class="{
-            'dark:text-gray-300': activeFilterKey != null,
-          }"
-          class="ml-2 font-bold"
-          v-html="activeFilterLabel"
-        >
-        </span>
       </div>
     </div>
 
@@ -402,6 +396,7 @@ export default {
           vue.availableResources = response.data.resources;
           vue.activeFilterKey = response.data.activeFilterKey;
           vue.title = response.data.title;
+          vue.titleResponsive = response.data.titleResponsive;
           vue.columns = response.data.columns;
           vue.weeks = response.data.weeks;
 
@@ -502,6 +497,7 @@ export default {
       monthLabels: Array(12).fill(""),
       windowTitle: "",
       title: "",
+      titleResponsive: "",
       columns: Array(7).fill("-"),
       weeks: Array(6).fill(Array(7).fill({})),
       styles: {
