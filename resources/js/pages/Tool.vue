@@ -13,28 +13,30 @@ aimed at developers). */
 
     <div id="nc-control">
       <div class="left-items">
-          <Button @click="prevMonth" variant="action" icon="chevron-double-left"> </Button>
-          <Button @click="reset" variant="action" icon="stop"> </Button>
-          <Button  @click="nextMonth" variant="action" icon="chevron-double-right"> </Button>
+        <Button @click="prevMonth" variant="action" icon="chevron-double-left">
+        </Button>
+        <Button @click="reset" variant="action" icon="stop"> </Button>
+        <Button @click="nextMonth" variant="action" icon="chevron-double-right">
+        </Button>
       </div>
 
       <div class="center-items">
-        <h1 class="text-90 font-normal text-xl md:text-2xl noselect hidden lg:block">
-          <span>{{ $data.title }}</span>
-        </h1>
-        <h1 class="lg:hidden ml-1 text-90 font-normal text-xl md:text-2xl noselect">
-          <span>{{ $data.titleResponsive }}</span>
-        </h1>          
-      </div>
-
-      <div class="right-items">
         <Dropdown
           :handle-internal-clicks="true"
           class="flex h-9 hover:bg-gray-100 dark:hover:bg-gray-700 rounded"
           dusk="month-picker"
         >
           <DropdownTrigger style="cursor: pointer">
-            <Button variant="action" icon="calendar"> </Button>
+            <h1
+              class="text-90 font-normal text-xl md:text-2xl noselect hidden lg:block"
+            >
+              <span>{{ $data.title }}</span>
+            </h1>
+            <h1
+              class="lg:hidden ml-1 text-90 font-normal text-xl md:text-2xl noselect"
+            >
+              <span>{{ $data.titleResponsive }}</span>
+            </h1>
           </DropdownTrigger>
 
           <template #menu>
@@ -84,6 +86,9 @@ aimed at developers). */
             </DropdownMenu>
           </template>
         </Dropdown>
+      </div>
+
+      <div class="right-items">
         <Dropdown
           :handle-internal-clicks="true"
           class="flex h-9 hover:bg-gray-100 dark:hover:bg-gray-700 rounded"
@@ -131,7 +136,11 @@ aimed at developers). */
           dusk="filter-selector"
         >
           <DropdownTrigger style="cursor: pointer">
-            <Button icon="filter" :variant="activeFilterKey != null ? 'solid' : 'action'"> </Button>
+            <Button
+              icon="filter"
+              :variant="activeFilterKey != null ? 'solid' : 'action'"
+            >
+            </Button>
           </DropdownTrigger>
 
           <template #menu>
