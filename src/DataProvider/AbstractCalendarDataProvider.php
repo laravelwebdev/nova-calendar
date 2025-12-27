@@ -110,7 +110,7 @@ abstract class AbstractCalendarDataProvider implements CalendarDataProviderInter
         return $this;
     }
     
-    public function startOfCalendar(Carbon $v = null) : Carbon
+    public function startOfCalendar(?Carbon $v = null) : ?Carbon
     {
         if(!is_null($v))
         {
@@ -120,7 +120,7 @@ abstract class AbstractCalendarDataProvider implements CalendarDataProviderInter
         return $this->startOfCalendar;
     }
     
-    public function endOfCalendar(Carbon $v = null) : Carbon
+    public function endOfCalendar(?Carbon $v = null) : ?Carbon
     {
         if(!is_null($v))
         {
@@ -130,7 +130,7 @@ abstract class AbstractCalendarDataProvider implements CalendarDataProviderInter
         return $this->endOfCalendar;
     }
     
-    public function startOfRange(Carbon $v = null) : Carbon
+    public function startOfRange(?Carbon $v = null) : ?Carbon
     {
         if(!is_null($v))
         {
@@ -140,7 +140,7 @@ abstract class AbstractCalendarDataProvider implements CalendarDataProviderInter
         return $this->startOfRange;
     }
     
-    public function endOfRange(Carbon $v = null) : Carbon
+    public function endOfRange(?Carbon $v = null) : ?Carbon
     {
         if(!is_null($v))
         {
